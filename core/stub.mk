@@ -9,11 +9,14 @@ include $(CURDIR)/libcinternals.mk
 #include $(CURDIR)/libcs.mk
 # all libkernel functions here
 include $(CURDIR)/libkernels505.mk
+# all piglet and gl es functions here
+include $(CURDIR)/libScePigletv2VSH.mk
 
 # we externalize these three because of size and to generate adaptive libs
 $(eval $(call generateModuleLarge, libSceLibcInternal, $(libCInternals)))
 #$(eval $(call generateModule, libc, $(libcs)))
 $(eval $(call generateModule, libkernel, $(libKernels)))
+$(eval $(call generateModuleLarge, libScePigletv2VSH, $(libScePigletv2VSH)))
 
 # all plain modules and symbols here
 $(eval $(call generateModule, libSceCamera, sceCameraAudioOpen sceCameraClose sceCameraCloseByHandle sceCameraGetAttribute sceCameraGetAutoExposureGain sceCameraGetAutoWhiteBalance sceCameraGetCalibrationData sceCameraGetConfig sceCameraGetContrast sceCameraGetDefectivePixelCancellation sceCameraGetDeviceInfo sceCameraGetExposureGain sceCameraGetFrameData sceCameraGetGamma sceCameraGetHue sceCameraGetLensCorrection sceCameraGetSaturation sceCameraGetSharpness sceCameraGetWhiteBalance sceCameraIsAttached sceCameraIsValidFrameData sceCameraOpen sceCameraOpenByModuleId sceCameraSetAttribute sceCameraSetAutoExposureGain sceCameraSetAutoWhiteBalance sceCameraSetCalibData sceCameraSetConfig sceCameraSetConfigInternal sceCameraSetContrast sceCameraSetDefectivePixelCancellation sceCameraSetExposureGain sceCameraSetGamma sceCameraSetHue sceCameraSetLensCorrection sceCameraSetSaturation sceCameraSetSharpness sceCameraSetWhiteBalance sceCameraStart sceCameraStartByHandle sceCameraStop sceCameraStopByHandle))
