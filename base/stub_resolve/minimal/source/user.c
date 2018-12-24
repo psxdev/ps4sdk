@@ -46,15 +46,15 @@ int ps4StubResolve(void *stub, char *moduleName, char *functionName, int *module
 		{
 			
 			int k = 0;
-			ps4StubResolveSystemCall(594, "libkernel.sprx", 0, &k, 0);
+			ps4StubResolveSystemCall(594, "libkernel_sys.sprx", 0, &k, 0);
 			if(k <= 0)
 			{
 				k=0;
-				ps4StubResolveSystemCall(594, "libkernel_web.sprx", 0, &k, 0);
+				ps4StubResolveSystemCall(594, "libkernel.sprx", 0, &k, 0);
 				if(k<=0)
 				{
 					k=0;
-					ps4StubResolveSystemCall(594, "libkernel_sys.sprx", 0, &k, 0);
+					ps4StubResolveSystemCall(594, "libkernel_web.sprx", 0, &k, 0);
 					if(k<=0)
 					{
 						return -1;
@@ -77,7 +77,7 @@ int ps4StubResolve(void *stub, char *moduleName, char *functionName, int *module
 		if(sdkVersion>=0x04050001 && moduleName[0]=='l' && moduleName[1]=='i' && moduleName[2]=='b' && moduleName[3]=='k' && moduleName[4]=='e' && moduleName[5]=='r' && moduleName[6]=='n' && moduleName[7]=='e' && moduleName[8]=='l')
 		{	
 			//by now in 4.05 we force to use libkernel_web.sprx instead libkernel.sprx in webkit context need to see why libkernel.sprx return -1
-			*moduleHandle = ps4StubResolveLoadStartModule("libkernel.sprx", 0, NULL, 0, NULL, NULL);
+			*moduleHandle = ps4StubResolveLoadStartModule("libkernel_sys.sprx", 0, NULL, 0, NULL, NULL);
 			
 		}
 		else
