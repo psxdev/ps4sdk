@@ -3,10 +3,13 @@
 #include <sce/types/kernel.h>
 #include <stddef.h>
 #include <sys/types.h>
-
+#ifdef __cplusplus
+extern "C" {
+#endif
 /* useless C / POSIX wrappers */
 int sceKernelGetCurrentCpu(void);
 int sceKernelGettimeofday(SceKernelTimeval *tp);
+uint64_t sceKernelGetProcessTime();
 int sceKernelUsleep(unsigned int microseconds);
 int scePthreadCancel(ScePthread thread);
 int scePthreadCreate(ScePthread *thread, const ScePthreadAttr *attr, void *(*entry)(void *), void *arg, const char *name);
@@ -55,3 +58,6 @@ int sceKernelStopUnloadModule(SceKernelModule handle, size_t argc, const void *a
 int sceKernelJitCreateSharedMemory(int flags, size_t size, int protection, int *destinationHandle);
 int sceKernelJitCreateAliasOfSharedMemory(int handle, int protection, int *destinationHandle);
 int sceKernelJitMapSharedMemory(int handle, int protection, void **destination);
+#ifdef __cplusplus
+}
+#endif
