@@ -79,7 +79,7 @@ int	isrune(int);
 int	isspecial(int);
 #endif
 __END_DECLS
-
+#ifndef __ORBIS__
 #define	isalnum(c)	__sbistype((c), _CTYPE_A|_CTYPE_D)
 #define	isalpha(c)	__sbistype((c), _CTYPE_A)
 #define	iscntrl(c)	__sbistype((c), _CTYPE_C)
@@ -126,4 +126,5 @@ __END_DECLS
 #define	isspecial(c)	__sbistype((c), _CTYPE_T)
 #endif
 
+#endif
 #endif /* !_CTYPE_H_ */
