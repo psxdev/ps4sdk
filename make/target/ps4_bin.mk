@@ -27,7 +27,7 @@ endif
 
 ###################################
 
-LinkerFlags += -Xlinker -T $(Ps4Sdk)/linker.x -Wl,--build-id=none
+LinkerFlags += -Xlinker -T $(PS4SDK)/linker.x -Wl,--build-id=none
 
 ###################################
 
