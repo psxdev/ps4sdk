@@ -14,7 +14,7 @@ Currently, running user and kernel code on firmwares ~**5.05** is supported.
 
 ## Prerequisites
 * A unix or linux system, VM or Container
-	* for OSX you will need to build clang and binutils from source 
+	* If your OS doesn't have Clang installed you will need to build clang and binutils from source 
 	* for Windows, i dont use it so no help from me
 * `clang 3.7` or later
 * `make`
@@ -55,7 +55,7 @@ For macOS
   cmake --build . --target install
   ```
   
-  After compiling and install you will have a fresh clang 7.0 with the same compiling options from Sony. However Sony is using propietary linker so we need a valid linker for macOS(freebsd has not this problem already has one).
+  After compiling and install you will have a fresh clang using latest version with the same compiling options from Sony. However Sony is using propietary linker so we need a valid linker for macOS(freebsd has not this problem already has one).
   
   Download binutils 2.25 and compile it with:
   ```
@@ -77,40 +77,40 @@ For macOS
   cat orbidev.sh
   PS4DEV=/usr/local/orbisdev;export PS4DEV
   PATH=$PS4DEV/host-osx/x86_64-pc-freebsd9/bin:$PS4DEV/toolchain/bin:$PATH
-  PS4SDK=$PS4DEV;export PS4SDK
+  ```
   
-  clang is searching for orbis-ld when you compile to fix that :
+  Clang is searching for orbis-ld when you compile to fix that :
   
   ```
   cd /usr/local/orbisdev/host-osx/x86_64-pc-freebsd9/bin
   cp ld orbis-ld
   ```
   
+  Now we can compile valid elf for PlayStation 4 from macOS :)
   
-  now we can compile valid elf for PlayStation 4 from macOS :)
-  
-
 
 ## Building
-```bash
-cd /usr/local/orbisdev
-. ./orbisdev.sh
-git clone https://github.com/psxdev/ps4sdk
-cd ps4sdk
-PS4SDK=/usr/local/orbisdev/git/ps4sdk;export PS4SDK
+The building process is quite easy, just do
+```
 make
 ```
+
 This will take some time, as it will build all libraries. In addition, if you are updating
 from a **git pull**, `make clean && make` instead of `make` may be required (and is advised),
 to ensure proper functionality.
 
+## Instalation
+
+Before continue you need to be sure that the `PS4SDK` bash variable has been defined, because is in the specific folder used during the instalation process.
+
+You can do something as:
+```
+export PS4SDK=/usr/local/orbisdev/ps4sdk
+```
+
 If all was fine install with:
 ```
-cp -frv include $PS4DEV
-cp -frv make $PS4DEV
-cp -frv lib $PS4DEV
-cp crt0.s $PS4DEV
-cp linker.x $PS4DEV
+make install
 ```
 
 ## Running code
