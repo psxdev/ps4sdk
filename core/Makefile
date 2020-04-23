@@ -1,25 +1,12 @@
 ###################################
 
-Ps4Sdk ?= $(CURDIR)/..
-
 target := ps4_lib_no_all
-BuildPath := $(Ps4Sdk)/build
-OutPath := $(Ps4Sdk)/lib
+BuildPath := $(PS4SDKSRC)/build
+OutPath := $(PS4SDKSRC)/lib
 
 ###################################
 
-ifndef Ps4SdkFlags
-ifdef ps4sdkflags
-Ps4SdkFlags := $(ps4sdkflags)
-endif
-ifdef PS4SDKCFLAGS
-Ps4SdkFlags := $(PS4SDKCFLAGS)
-endif
-endif
-
-###################################
-
-include $(Ps4Sdk)/make/ps4sdk.mk
+include $(PS4SDKSRC)/make/ps4sdk.mk
 
 archive2 = $(Archiver) $(ArchiverFlags)
 

@@ -1,27 +1,31 @@
 ###################################
 
-ifndef Ps4Sdk
+ifdef PS4SDKSRC
+PS4SDK = $(PS4SDKSRC)
+endif
+
+ifndef PS4SDK
 ifdef ps4sdk
-Ps4Sdk := $(ps4sdk)
+PS4SDK := $(ps4sdk)
 endif
 ifdef PS4SDK
-Ps4Sdk := $(PS4SDK)
+PS4SDK := $(PS4SDK)
 endif
-ifndef Ps4Sdk
-$(error Neither PS4SDK, Ps4Sdk nor ps4sdk set)
+ifndef PS4SDK
+$(error Neither PS4SDKSRC, PS4SDK, Ps4Sdk nor ps4sdk set)
 endif
 endif
 
 ###################################
 
-AssemblerFlags += -I$(Ps4Sdk)/include
-CompilerFlags += -D__PS4__ -I$(Ps4Sdk)/include -I $(Ps4Sdk)/include/sce
-CompilerFlagsCpp += -D__PS4__ -I$(Ps4Sdk)/include -I $(Ps4Sdk)/include/sce -I$(Ps4Sdk)/include/c++ -I$(Ps4Sdk)/include/c++/tr1
-LinkerFlags += -L$(Ps4Sdk)/lib
+AssemblerFlags += -I$(PS4SDK)/include
+CompilerFlags += -D__PS4__ -I$(PS4SDK)/include -I $(PS4SDK)/include/sce
+CompilerFlagsCpp += -D__PS4__ -I$(PS4SDK)/include -I $(PS4SDK)/include/sce -I$(PS4SDK)/include/c++ -I$(PS4SDK)/include/c++/tr1
+LinkerFlags += -L$(PS4SDK)/lib
 
 ###################################
 
-CrtFile ?= $(Ps4Sdk)/crt0.s
+CrtFile ?= $(PS4SDK)/crt0.s
 #link = $(Linker) $(Ps4Sdk)/crt0.s $? $(LinkerFlags) $(Libraries) -o $@
 
 ###################################
